@@ -23,15 +23,15 @@ Requires Python 3.8+.
 
 #### Single file
 ```
-./sqlserver-to-postgres.py ./sql/auth.sql -o migrated/ --preserve-case --paranoid
+python ./sqlserver-to-postgres.py ./sql/auth.sql -o migrated/ --preserve-case --paranoid
 ```
 #### Full folder (recursive)
 ```
-./sqlserver-to-postgres.py ./sql -o migrated/ --preserve-case --paranoid
+python ./sqlserver-to-postgres.py ./sql -o migrated/ --preserve-case --paranoid
 ```
 #### Inline query
 ```
-./sqlserver-to-postgres.py -q "SELECT TOP 5 [Name] FROM dbo.Users WITH (NOLOCK)" --preserve-case
+python ./sqlserver-to-postgres.py -q "SELECT TOP 5 [Name] FROM dbo.Users WITH (NOLOCK)" --preserve-case
 ```
 #### stdin
 ```
@@ -104,7 +104,7 @@ grep -rn "TODO: MANUAL" migrated/
 
 
 ```
-./sqlserver-to-postgres.py -q "SELECT * FROM [AssetManager].[Table]" --preserve-case
+python ./sqlserver-to-postgres.py -q "SELECT * FROM [AssetManager].[Table]" --preserve-case
 ```
 
 ```sql
@@ -148,7 +148,7 @@ FROM public."User";
 
 #### 1. Translate
 ```bash
-./sqlserver-to-postgres.py ./sql -o migrated/ --preserve-case --paranoid --report report.json
+python  ./sqlserver-to-postgres.py ./sql -o migrated/ --preserve-case --paranoid --report report.json
 ```
 #### 2. See what needs manual work
 ```bash
@@ -174,7 +174,7 @@ Do comparison
 
 - run: pip install "sqlglot==25.*"
 - run: |
-    ./sqlserver-to-postgres.py ./sql -o migrated/ \
+    python ./sqlserver-to-postgres.py ./sql -o migrated/ \
       --preserve-case --paranoid --strict --report report.json
 
 `--strict` exits 1 if anything needs manual work. `--allow-risky` is auto-refused in CI (override with `TSQL2PG_ALLOW_RISKY=1`).
